@@ -18,11 +18,10 @@
       min-height: 100vh;
     }
 
-    /* スマホ・小さい画面向け：背景画像を自動調整 */
     @media (max-width: 1024px) {
       body {
         background-size: cover;
-        background-attachment: scroll; /* モバイルでは fixed は非推奨 */
+        background-attachment: scroll;
       }
     }
 
@@ -79,6 +78,29 @@
     button:hover {
       background-color: #0056b3;
     }
+
+    /* 管理者リンクのスタイル */
+    #admin-link {
+      position: fixed;
+      bottom: 10px;
+      right: 15px;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      font-size: 14px;
+      z-index: 999;
+    }
+
+    #admin-link a {
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+
+    #admin-link a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -100,6 +122,26 @@
       <button type="submit">送信</button>
     </form>
   </div>
+
+  <!-- 管理者専用リンク -->
+  <div id="admin-link">
+    <a href="#" onclick="adminAccess()">管理者専用</a>
+  </div>
+
+  <!-- パスワード入力処理 -->
+  <script>
+    function adminAccess() {
+      const password = prompt("Nanohana01");
+      if (password === "Nanohana01") {
+        // 🔗 正しいパスワードでリダイレクトするURL（Googleスプレッドシートなど）
+        window.location.href = "https://docs.google.com/spreadsheets/d/1cs1n9LtLqkJCcqD9RYPQ2xaGiywonYkyC8xTd0E_BHk/edit?gid=0#gid=0"; // ← 実際の管理用URLに置き換えてください
+      } else if (password !== null) {
+        alert("パスワードが違います。");
+      }
+    }
+  </script>
 </body>
 </html>
+
+
 
