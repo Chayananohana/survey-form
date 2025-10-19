@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>茶屋町なの花眼科　満足度アンケート</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://publicdomainq.net/images/201805/24s/publicdomainq-0022406tbp.jpg.pagespeed.ce.nDuw9NNEAR.jpg') no-repeat center center fixed;
+      background-size: 1920px 1080px;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    /* スマホ・小さい画面向け：背景画像を自動調整 */
+    @media (max-width: 1024px) {
+      body {
+        background-size: cover;
+        background-attachment: scroll; /* モバイルでは fixed は非推奨 */
+      }
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 30px 20px;
+      margin: 40px 15px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    select {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="https://www.nanohana-ganka.jp/img/logo_txt_wide.svg" alt="茶屋町なの花眼科 ロゴ" />
+    </div>
+    <h2>サービス満足度アンケート</h2>
+    <form method="POST" action="https://script.google.com/macros/s/AKfycbx_lv8JfYt8yzgS18zZF2QDVKS9oyST5paSJ2Yy_W30DUVX6CaXd8PTIeDoC9wEkEHiqA/exec">
+      <label for="rating">本日の満足度（1〜5）:</label>
+      <select id="rating" name="rating" required>
+        <option value="">選択してください</option>
+        <option value="1">1（不満）</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5（非常に満足）</option>
+      </select>
+      <button type="submit">送信</button>
+    </form>
+  </div>
+</body>
+</html>
