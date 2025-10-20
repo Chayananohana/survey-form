@@ -5,19 +5,111 @@
   <title>茶屋町なの花眼科　満足度アンケート</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    /* ... 省略（既存のCSSはそのままでOK） ... */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://publicdomainq.net/images/201805/24s/publicdomainq-0022406tbp.jpg.pagespeed.ce.nDuw9NNEAR.jpg') no-repeat center center fixed;
+      background-size: 1920px 1080px;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* ← 中央寄せから上寄せに変更 */
+      min-height: 100vh;
+    }
 
-    /* 理由欄のスタイル */
-    .reason-container {
-      display: none; /* 初期は非表示 */
+    @media (max-width: 1024px) {
+      body {
+        background-size: cover;
+        background-attachment: scroll;
+      }
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 30px 20px;
+      margin: 60px 15px; /* ← 上方向に少し余白を追加 */
+      border-radius: 10px;
+      max-width: 360px;
+      width: 100%;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    select, textarea {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding: 8px;
+      font-size: 16px;
       margin-bottom: 20px;
     }
 
     textarea {
-      width: 100%;
-      padding: 8px;
-      font-size: 16px;
       resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .reason-container {
+      display: none;
+      margin-bottom: 20px;
+    }
+
+    #admin-link {
+      position: fixed;
+      bottom: 10px;
+      right: 15px;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      font-size: 14px;
+      z-index: 999;
+    }
+
+    #admin-link a {
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+
+    #admin-link a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -27,8 +119,7 @@
       <img src="https://www.nanohana-ganka.jp/img/logo_txt_wide.svg" alt="茶屋町なの花眼科 ロゴ" />
     </div>
     <h2>ご利用満足度アンケート</h2>
-
-    <form method="POST" action="https://script.google.com/macros/s/AKfycbyoVwEa9TLvFwZed16q3YrHx0FsLd-SLeZhWY5RF5ZMkY9MXegen_RnJNSoP3sQ8Idkdw/exec">
+    <form method="POST" action="https://script.google.com/macros/s/AKfycbw__ugSwbJqk0BdMBde16U2WtD0WEBHJVnGFKQnSelI8w7g6nr2dkNXp3k-zmHichyimQ/exec">
       <label for="rating">本日の満足度（1〜5）:</label>
       <select id="rating" name="rating" required onchange="toggleReasonField()">
         <option value="">選択してください</option>
@@ -39,7 +130,6 @@
         <option value="5">5（非常に満足）</option>
       </select>
 
-      <!-- 理由入力欄 -->
       <div class="reason-container" id="reason-container">
         <label for="reason">理由を教えてください（任意）:</label>
         <textarea id="reason" name="reason" rows="4" placeholder="理由を入力してください..."></textarea>
@@ -49,12 +139,10 @@
     </form>
   </div>
 
-  <!-- 管理者専用リンク -->
   <div id="admin-link">
     <a href="#" onclick="adminAccess()">管理者専用</a>
   </div>
 
-  <!-- スクリプト -->
   <script>
     function toggleReasonField() {
       const rating = document.getElementById('rating').value;
@@ -77,3 +165,4 @@
   </script>
 </body>
 </html>
+
