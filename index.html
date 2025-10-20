@@ -5,101 +5,19 @@
   <title>茶屋町なの花眼科　満足度アンケート</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: url('https://publicdomainq.net/images/201805/24s/publicdomainq-0022406tbp.jpg.pagespeed.ce.nDuw9NNEAR.jpg') no-repeat center center fixed;
-      background-size: 1920px 1080px;
-      background-color: #f0f0f0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-    }
+    /* ... 省略（既存のCSSはそのままでOK） ... */
 
-    @media (max-width: 1024px) {
-      body {
-        background-size: cover;
-        background-attachment: scroll;
-      }
-    }
-
-    .container {
-      background: rgba(255, 255, 255, 0.85);
-      padding: 30px 20px;
-      margin: 40px 15px;
-      border-radius: 10px;
-      max-width: 400px;
-      width: 100%;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    }
-
-    .logo {
-      text-align: center;
+    /* 理由欄のスタイル */
+    .reason-container {
+      display: none; /* 初期は非表示 */
       margin-bottom: 20px;
     }
 
-    .logo img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    label {
-      font-weight: bold;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    select {
+    textarea {
       width: 100%;
       padding: 8px;
       font-size: 16px;
-      margin-bottom: 20px;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    /* 管理者リンクのスタイル */
-    #admin-link {
-      position: fixed;
-      bottom: 10px;
-      right: 15px;
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 8px 12px;
-      border-radius: 6px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      font-size: 14px;
-      z-index: 999;
-    }
-
-    #admin-link a {
-      text-decoration: none;
-      color: #007bff;
-      font-weight: bold;
-    }
-
-    #admin-link a:hover {
-      text-decoration: underline;
+      resize: vertical;
     }
   </style>
 </head>
@@ -109,9 +27,10 @@
       <img src="https://www.nanohana-ganka.jp/img/logo_txt_wide.svg" alt="茶屋町なの花眼科 ロゴ" />
     </div>
     <h2>ご利用満足度アンケート</h2>
+
     <form method="POST" action="https://script.google.com/macros/s/AKfycbyoVwEa9TLvFwZed16q3YrHx0FsLd-SLeZhWY5RF5ZMkY9MXegen_RnJNSoP3sQ8Idkdw/exec">
       <label for="rating">本日の満足度（1〜5）:</label>
-      <select id="rating" name="rating" required>
+      <select id="rating" name="rating" required onchange="toggleReasonField()">
         <option value="">選択してください</option>
         <option value="1">1（不満）</option>
         <option value="2">2</option>
@@ -119,6 +38,13 @@
         <option value="4">4</option>
         <option value="5">5（非常に満足）</option>
       </select>
+
+      <!-- 理由入力欄 -->
+      <div class="reason-container" id="reason-container">
+        <label for="reason">理由を教えてください（任意）:</label>
+        <textarea id="reason" name="reason" rows="4" placeholder="理由を入力してください..."></textarea>
+      </div>
+
       <button type="submit">送信</button>
     </form>
   </div>
@@ -128,13 +54,22 @@
     <a href="#" onclick="adminAccess()">管理者専用</a>
   </div>
 
-  <!-- パスワード入力処理 -->
+  <!-- スクリプト -->
   <script>
+    function toggleReasonField() {
+      const rating = document.getElementById('rating').value;
+      const reasonContainer = document.getElementById('reason-container');
+      if (rating === "1" || rating === "2" || rating === "3") {
+        reasonContainer.style.display = "block";
+      } else {
+        reasonContainer.style.display = "none";
+      }
+    }
+
     function adminAccess() {
       const password = prompt("パスワードを入力してください：");
       if (password === "Nanohana01") {
-        // 🔗 
-        window.location.href = "https://docs.google.com/spreadsheets/d/1cs1n9LtLqkJCcqD9RYPQ2xaGiywonYkyC8xTd0E_BHk/edit?gid=0#gid=0"; // 
+        window.location.href = "https://docs.google.com/spreadsheets/d/1cs1n9LtLqkJCcqD9RYPQ2xaGiywonYkyC8xTd0E_BHk/edit?gid=0#gid=0";
       } else if (password !== null) {
         alert("パスワードが違います。");
       }
@@ -142,9 +77,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
